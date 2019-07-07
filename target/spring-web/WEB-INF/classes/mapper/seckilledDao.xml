@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.mall.dao.seckilledDao">
+
+    <insert id="insertSuccessKilled">
+    INSERT ignore INTO  seckilled(goods_id,user_id)
+    VALUES (#{goodsId},#{userId})
+    </insert>
+
+    <select id="queryByGoodsIdWithGoods" resultType="seckilled">
+        <!--only returning tow tables match row -->
+        SELECT s.goods_id, s.user_id, s.create_time, s.state,
+        g.goods_id, g.goods_name, g.goods_number, g.start_time, g.end_time, g.create_time
+        FROM seckilled s
+        INNER JOIN goods g ON s.goods_id = g.goods_id
+        WHERE s.goods_id = #{goodsId}
+    </select>
+</mapper>

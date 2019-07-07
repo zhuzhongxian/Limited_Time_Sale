@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.mall.dao.userDao">
+
+    <select id="queryByUserIdWithGoods" resultMap="userWithGoodsResult">
+    SELECT u.user_id,u.user_name,g.goods_id,g.goods_name,g.goods_price,g.goods_title,g.goods_img_url,s.state,s.create_time
+    FROM user u, goods g, seckilled s
+    WHERE  u.user_id=s.user_id
+    AND g.goods_id=s.goods_id
+    AND s.user_id=#{userId}
+    </select>
+    <resultMap id="userWithGoodsResult" type="user">
+        <id property="userId" column="user_id"/>
+        <result property="userName" column="user_name"/>
+        <collection property="seckilled" ofType="seckilled">
+            <result property="state" column="state"/>
+            <result property="createTime" column="create_time"/>
+            <association property="goods" javaType="goods">
+                <id property="goodsId" column="goods_id"/>
+                <result property="goodsName" column="goods_name"/>
+                <result property="goodsPrice" column="goods_price"/>
+                <result property="goodsTitle" column="goods_title"/>
+                <result property="goodsImgUrl" column="goods_img_url"/>
+            </association>
+        </collection>
+    </resultMap>
+
+</mapper>

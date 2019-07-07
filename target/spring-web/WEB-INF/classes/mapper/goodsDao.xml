@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.mall.dao.goodsDao">
+    <update id="reduceNumber">
+        UPDATE
+          goods
+        SET
+          goods_number=goods_number-1
+        WHERE goods_id=#{goodsId}
+        AND start_time <![CDATA[ <= ]]> #{killTime}
+        AND end_time >= #{killTime}
+        AND goods_number>0;
+    </update>
+    <select id="queryById" resultType="goods" parameterType="long">
+        SELECT goods_id,goods_name,goods_number,goods_price,goods_title,goods_img_url,start_time,end_time,create_time
+        FROM goods
+        WHERE goods_id=#{goodsId}
+    </select>
+
+    <select id="queryAll" resultType="goods">
+        SELECT goods_id,goods_name,goods_number,goods_price,goods_title,goods_img_url,start_time,end_time,create_time
+        FROM goods
+        ORDER BY create_time DESC
+        limit #{offset},#{limit}
+    </select>
+</mapper>
