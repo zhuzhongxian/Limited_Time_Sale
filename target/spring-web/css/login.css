@@ -1,0 +1,259 @@
+/*header*/
+*{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;}
+header{
+    width:100%;
+    height: 80px;
+}
+header .header-content{
+    box-sizing: border-box;
+    width: 990px;
+    height: 80px;
+    margin: 0 auto;
+}
+header .header-content .logo{
+    float: left;
+    width: 160px;
+    height: 60px;
+    background: url("../image/icon.png") no-repeat 0 15px;
+}
+header .header-content span{
+    float: left;
+    font-size: 24px;
+    padding-left: 30px;
+    margin-top: 20px;
+}
+header .header-content .login{
+    float: right;
+    font-size: 12px;
+    margin-top: 55px;
+    padding-bottom: 5px;
+    font-family: Arial,Verdana,"\5b8b\4f53";
+}
+header .header-content .login i{
+    display: inline-block;
+    width: 18px;
+    height: 16px;
+    margin: 0 5px;
+    background: url("../image/msg-icon.png") no-repeat ;
+}
+header .header-content .login a{
+    color: #999;
+    position: relative;
+    top: -5px;
+
+}
+header .header-content .login a:hover {
+    color: #E4393C;
+    text-decoration: underline;
+}
+
+main{
+    width:100%;
+    height: 475px;
+    background-color: #E8C99A;
+    position: relative;
+}
+main section{
+    width: 990px;
+    height:100%;
+    margin:  0 auto;
+    background: url("/img/loginBg.jpg")no-repeat 0 0 ;
+}
+
+main section .login-content{
+    width: 346px;
+    height: 346px;
+    padding: 20px;
+    float: right;
+    top: 40px;  ;
+    background: #fff;
+    position: relative;
+    color: #666;
+}
+main section .login-content-top{
+    width:100%;
+    height: 55px;
+    border-bottom: 1px solid #f4f4f4;
+    position: absolute;
+    top: 0;
+    left:0;
+
+}
+main section .login-content-top a:hover,main section .login-content-top a:nth-child(2) {
+    font-weight: bold;
+    color: #e4393c;
+}
+main section .login-content-top a{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+    width: 50%;
+    height: 100%;
+    padding: 0 20px;
+    text-align: center;
+    line-height: 55px;
+    color: #666;
+    font-size: 18px;
+}
+
+main section .login-content-notice{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    height: 23px;
+    position: relative;
+    background: #fef4e5;
+    color: #666;
+    margin: 40px auto 5px;
+    padding-left: 40px;
+    border: 1px solid #f6c090;
+    font-size: 12px;
+    line-height: 23px;
+}
+main section .login-content-notice i{
+    display: inline-block;
+    width: 16px;
+    height: 17px;
+    position: absolute;
+    left: 10px;
+    top: 3px;
+    background: url("../image/pwd-icons.png")no-repeat  -104px -24px;
+}
+main section form{
+    width: 100%;
+}
+main section form .form-item{
+    border: 1px solid #bdbdbd;
+    height: 38px;
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
+}
+main section form .form-item label{
+    position: absolute;
+    top: 0;
+    left: 0px;
+    width: 38px;
+    height: 36px;
+    border-right: 1px solid #bdbdbd;
+}
+
+main section form .form-item input{
+    height: 100%;
+    width:100%;
+    padding-left: 45px;
+    color: #666;
+    border: none;
+}
+main section form .form-item:nth-child(1) label{
+    background: url("../image/pwd-icons.png") no-repeat ;
+}
+main section form .form-item:nth-child(2) label{
+    background: url("../image/pwd-icons.png") no-repeat -48px 0;
+}
+main section form .form-check{
+    font-size: 12px;
+
+}
+main section form .form-check label{
+    margin-left: 5px;
+    vertical-align: top;
+}
+main section form .form-check a{
+    float: right;
+    color: #666;
+}
+main section form .form-check a:hover{
+    color: #E4393C;
+    text-decoration: underline;
+}
+
+main section form input[type = submit]{
+    width:100%;
+    height: 31px;
+    background: #e4393c;
+    color: #ffffff;
+    font-size: 18px;
+    word-spacing: 1em;
+    border: 1px solid #e85356;
+    margin-top: 15px;
+}
+main section .login-content-bottom{
+    width:100%;
+    position: absolute;
+    bottom:0;
+    left: 0;
+    padding: 0 18px;
+    line-height: 50px;
+    border-top: 1px solid #f4f4f4;
+    background-color: #fcfcfc;
+}
+main section .login-content-bottom a{
+    font-size: 12px;
+
+}
+main section .login-content-bottom span{
+    padding-left: 1px;
+    margin: 0 5px;
+    font-size: 10px;
+    background-color: #999;
+}
+main section .login-content-bottom a i{
+    width: 19px;
+    height: 18px;
+    display: inline-block;
+    position: relative;
+    top: 5px;
+
+}
+main section .login-content-bottom a:nth-child(1) i{
+    margin-right: 5px;
+    background: url("../image/QQ-weixin.png") no-repeat;
+}
+main section .login-content-bottom a:nth-child(3) i{
+     margin-right: 5px;
+     background: url("../image/QQ-weixin.png") no-repeat -20px 0;
+ }
+main section .login-content-bottom a:nth-child(6){
+    float: right;
+}
+main section .login-content-bottom a:nth-child(6) i{
+    margin-right: 5px;
+    background: url("../image/pwd-icons.png")-104px -75px no-repeat;;
+}
+main section .login-content-bottom a:hover {
+    color: #e4393c;
+    text-decoration: underline;
+}
+/*footer*/
+footer{
+    font-size: 12px;
+    text-align: center;
+    border-top: solid 1px #e6e6e6;
+    color: #999;
+    padding-bottom: 30px;
+}
+footer p a{
+    font-size: 12px;
+    text-align: center;
+    color: #999;
+
+
+}
+footer p:nth-child(1){
+
+    padding-top: 30px;
+    padding-bottom: 15px;
+}
+footer p span{
+
+    padding-left: 1px;
+    margin: 0 10px;
+    font-size: 10px;
+    background-color: #999;
+}

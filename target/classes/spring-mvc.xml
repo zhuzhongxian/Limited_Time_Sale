@@ -21,7 +21,9 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <!--<mvc:resources mapping="/css/**" location="/WEB-INF/css/" />-->
+    <mvc:resources location="/css/" mapping="/css/**" />
+    <mvc:resources location="/img/" mapping="/img/**" />
+    <mvc:resources location="/bootstrap/" mapping="/bootstrap/**" />
 
 
 

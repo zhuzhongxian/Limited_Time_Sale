@@ -52,7 +52,7 @@ public class goodsController {
     @RequestMapping(value = "/{goodsId}/exposer",
             method = RequestMethod.POST,produces = {"application/json;charset=utf-8"})
     @ResponseBody
-    public goodsResult<exposer> exposer(Long goodsId){
+    public goodsResult<exposer> exposer(@PathVariable Long goodsId){
         goodsResult<exposer> result;
         try{
             exposer exposer = goodsService.exportGoodsUrl(goodsId);
@@ -73,6 +73,7 @@ public class goodsController {
         if (userId == null){
             return new goodsResult<seckillExecution>(false,"未登陆");
         }
+        userId=1L;
         goodsResult<seckillExecution> result;
         try{
             seckillExecution execution = goodsService.executeseckill(goodsId, userId, md5);

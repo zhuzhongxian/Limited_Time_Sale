@@ -27,4 +27,13 @@
         </collection>
     </resultMap>
 
+    <select id="checkByUserNameAndPwd" resultType="user">
+        select * from user where user_name = #{userName} AND user_pwd = #{userPwd}
+    </select>
+
+    <insert id="registUser">
+    INSERT INTO  user(user_name,user_pwd)
+    VALUES (#{userName},#{userPwd})
+    </insert>
+
 </mapper>
