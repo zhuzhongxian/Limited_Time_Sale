@@ -15,9 +15,6 @@ var seckill ={
     },
     handleSeckillkill : function(goodsId,node){
         //获取秒杀地址，控制显示逻辑 ，执行秒杀
-         /*node.hide()
-            .html('<button class="btn btn-primary btn-lg" id="killBtn">开始秒杀</button>');//按钮*/
-        //console.log(node);
         $("#killBtn").attr("style","display:block;");
 
 
@@ -34,12 +31,10 @@ var seckill ={
                     var md5 = exposer['md5'];
                     console.log("dd"+md5);
                     var killUrl = seckill.URL.execution(goodsId,md5);
-                    //console.log("killUrl:"+killUrl);
                     //绑定一次点击事件
                     $('#killBtn').one('click',function(){
                         //执行秒杀请求
                         //1:先禁用按钮
-                        //$(this).addClass('disabled');
                         //2:发送秒杀请求执行秒杀
                         $.post(killUrl,{},function(result){
                             if(result && result['success']){
@@ -67,14 +62,7 @@ var seckill ={
 
         });
     },
-    //验证手机号
-    validatePhone: function (phone) {
-        if (phone && phone.length == 11 && !isNaN(phone)) {
-            return true;
-        } else {
-            return false;
-        }
-    },
+
     countdown: function (goodsId, nowTime, startTime, endTime) {
         var seckillBox = $('#seckill-box');
         //时间判断
@@ -108,32 +96,7 @@ var seckill ={
     detail: {
         //详情页初始化
         init : function(params){
-            //var killPhone = $.cookie('userId');
 
-            /*if(!seckill.validatePhone(userid)){
-                //绑定phone
-                //控制输出
-                var killPhoneModal = $('#killPhoneModal');
-                //显示弹出层
-                killPhoneModal.modal({
-                    show: true,//显示弹出层
-                    backdrop: 'static',//禁止位置关闭
-                    keyboard: false//关闭键盘事件
-                });
-                $('#killPhoneBtn').click(function(){
-                    var inputPhone = $('#killPhoneKey').val();
-                    console.log('inputPhone='+inputPhone);//TODO
-                    if(seckill.validatePhone(inputPhone)){
-                        //电话写入cookie
-                        $.cookie('killPhone', inputPhone, {expires: 7, path: '/goods'});
-                        //刷新页面
-                        window.location.reload();
-                    }else{
-                        $('#killPhoneMessage').hide().html('<label class="label label-danger">手机号错误!</label>').show(300);
-                    }
-                });
-            }*/
-            //已经登录
             //计时交互
             var startTime = params['startTime'];
             var endTime = params['endTime'];

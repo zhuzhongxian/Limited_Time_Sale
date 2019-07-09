@@ -29,4 +29,5 @@ public interface goodsDao {
      * @return
      */
     List<goods> queryAll(@Param("offset")int offset, @Param("limit") int limit);
+
 }

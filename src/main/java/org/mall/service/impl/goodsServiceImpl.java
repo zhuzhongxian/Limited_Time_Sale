@@ -2,6 +2,7 @@ package org.mall.service.impl;
 
 import org.mall.bean.goods;
 import org.mall.bean.seckilled;
+import org.mall.dao.cache.RedisDao;
 import org.mall.dto.exposer;
 import org.mall.dto.seckillExecution;
 import org.mall.enums.statEnums;
@@ -26,6 +27,9 @@ public class goodsServiceImpl implements goodsService {
     private org.mall.dao.goodsDao goodsDao;
     @Autowired
     private org.mall.dao.seckilledDao seckilledDao;
+    @Autowired
+    private RedisDao redisDao;
+
     private final String token="asdsadsadsadsffdgfgfxkck";
 
     private String getMD5(long goodsId){
@@ -41,7 +45,16 @@ public class goodsServiceImpl implements goodsService {
 
     @Override
     public goods getById(long goodsId){
-        return goodsDao.queryById(goodsId);
+        goods goods = redisDao.getGoods(goodsId);
+        if (goods == null){
+            goods = goodsDao.queryById(goodsId);
+            if (goods == null){
+                return null;
+            }else {
+                redisDao.putGoods(goods);
+            }
+        }
+        return goods;
     }
 
     @Override
@@ -67,7 +80,7 @@ public class goodsServiceImpl implements goodsService {
      * execute seckill
      * @param goodsId
      * @param userId
-     * @param md5
+
      * @return
      * @throws seckillBaseException
      * @throws repeatkillException
@@ -75,12 +88,12 @@ public class goodsServiceImpl implements goodsService {
      */
     @Override
     @Transactional
-    public seckillExecution executeseckill(long goodsId, long userId, String md5)
+    public seckillExecution executeseckill(long goodsId, long userId)
             throws seckillBaseException, repeatkillException, seckillCloseException {
         //check data is integrate
-        if (md5 == null || !md5.equals(getMD5(goodsId))) {
+        /*if (md5 == null || !md5.equals(getMD5(goodsId))) {
             throw new seckillBaseException("data rewrite");
-        }
+        }*/
         Date nowTime = new Date();
         try {
             int updateCount = goodsDao.reduceNumber(goodsId, nowTime);

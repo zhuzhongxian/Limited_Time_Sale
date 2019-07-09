@@ -35,12 +35,11 @@ public interface goodsService {
      *  execute seckill operation
      * @param goodsId
      * @param userId
-     * @param md5
      * @return  dto of seckillExecution
      * @throws seckillBaseException
      * @throws repeatkillException
      * @throws seckillCloseException
      */
-    seckillExecution executeseckill(long goodsId, long userId, String md5)
+    seckillExecution executeseckill(long goodsId, long userId)
             throws seckillBaseException, repeatkillException, seckillCloseException;
 }

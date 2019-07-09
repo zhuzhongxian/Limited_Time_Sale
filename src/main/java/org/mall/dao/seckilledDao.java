@@ -19,4 +19,7 @@ public interface seckilledDao {
      * @return
      */
     seckilled queryByGoodsIdWithGoods(long goodsId);
+
+
+
 }

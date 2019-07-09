@@ -6,7 +6,66 @@
     <%@include file="common/head.jsp" %>
 </head>
 <body>
+
 <div class="container">
+    <div class="panel panel-default text-center">
+        <div class="pannel-heading">
+            <h1>${goods.goodsName}</h1>
+        </div>
+        <div class="panel-body">
+            <h2 class="text-danger">
+                <!-- 显示time图标 -->
+                <span class="glyphicon glyphicon-time"></span>
+                <a href="/goods/${goods.goodsId}/${sessionScope.USER_SESSION.userId}/execute"><button class="btn btn-primary btn-lg" id="killBtn" style="margin: 0px 0px 0px 0px;align-content: center; ">开始秒杀</button></a>
+                <!-- 展示倒计时 -->
+                <span class="glyphicon" id="seckill-box"></span>
+            </h2>
+        </div>
+
+        <div class="content" style="margin: 0px 0px 0px 0px;">
+            <div class="big">
+                <!-- 放大镜 -->
+                <div class="big-img">
+                    <img src="/img/${goods.goodsImgUrl}">
+                    <div class="shade"></div>
+                </div>
+
+            </div>
+
+            <div class="info">
+                <h1>${goods.goodsTitle}</h1>
+                <div class="shuxing">
+                    <span class="dt">秒 杀 价:</span>
+                    <div class="price">
+                        <!-- ￥928.00 -->
+                        <p>￥</p>
+                        <p id="p">${goods.goodsPrice}</p>
+                    </div>
+                    <div class="jiangjia"></div><br>
+                    <div class="aaaaa">
+                        <span class="dt"></span>
+
+                        <div class="sjprice"></div>
+
+
+                        <ul>
+
+                        </ul>
+
+                    </div>
+                </div>
+                <div id="shuxing1">
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<%--<div class="container">
     <div class="panel panel-default text-center">
         <div class="pannel-heading">
             <h1>${goods.goodsName}</h1>
@@ -21,9 +80,9 @@
             </h2>
         </div>
     </div>
-</div>
+</div>--%>
 <!-- 登录弹出层，输入电话 -->
-<div id="killPhoneModal" class="modal fade">
+<%--<div id="killPhoneModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -50,7 +109,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>--%>
 </body>
 
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->

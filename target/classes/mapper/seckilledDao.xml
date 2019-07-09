@@ -17,4 +17,5 @@
         INNER JOIN goods g ON s.goods_id = g.goods_id
         WHERE s.goods_id = #{goodsId}
     </select>
+
 </mapper>

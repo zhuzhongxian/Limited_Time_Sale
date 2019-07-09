@@ -64,7 +64,7 @@ public class goodsController {
         return result;
     }
 
-    @RequestMapping(value = "/{goodsId}/{md5}/execution",
+    /*@RequestMapping(value = "/{goodsId}/{md5}/execution",
             method = RequestMethod.POST, produces = {"application/json;charset=utf-8"})
     @ResponseBody
     public goodsResult<seckillExecution> execute(@PathVariable("goodsId") Long goodsId,
@@ -89,6 +89,18 @@ public class goodsController {
             seckillExecution execution = new seckillExecution(goodsId, statEnums.INNER_ERROR);
             return new goodsResult<seckillExecution>(true, execution);
         }
+    }*/
+
+    @RequestMapping(value = "/{goodsId}/{userId}/execute",method = RequestMethod.GET)
+    String execute(@PathVariable("goodsId") Long goodsId,
+                   @PathVariable("userId") Long userId,
+                   Model model){
+        if (userId == null){
+            return "forward:/user/login";
+        }
+        seckillExecution execution = goodsService.executeseckill(goodsId, userId);
+            return "forward:/user/"+userId+"/cart";
+
     }
 
     @RequestMapping(value = "/time/now", method = RequestMethod.GET)
