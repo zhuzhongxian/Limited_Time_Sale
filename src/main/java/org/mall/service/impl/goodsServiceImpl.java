@@ -1,5 +1,6 @@
 package org.mall.service.impl;
 
+import org.apache.commons.collections.MapUtils;
 import org.mall.bean.goods;
 import org.mall.bean.seckilled;
 import org.mall.dao.cache.RedisDao;
@@ -18,7 +19,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class goodsServiceImpl implements goodsService {
@@ -95,18 +98,54 @@ public class goodsServiceImpl implements goodsService {
             throw new seckillBaseException("data rewrite");
         }*/
         Date nowTime = new Date();
+        /*Map<String,Object> map = new HashMap<String, Object>();
+        map.put("goodsId",goodsId);
+        map.put("userId",userId);
+        map.put("killTime",nowTime);
+        map.put("result",null);*/
         try {
-            int updateCount = goodsDao.reduceNumber(goodsId, nowTime);
-            if (updateCount <= 0) {
-                throw new seckillCloseException("seckill is close");
+            int insertcount = seckilledDao.insertSuccessKilled(goodsId, userId);
+            if (insertcount <= 0) {
+                throw new repeatkillException("this goods had been seckilled");
             } else {
-                int insertcount = seckilledDao.insertSuccessKilled(goodsId, userId);
-                if (insertcount <= 0) {
-                    throw new repeatkillException("this goods had been seckilled");
+                int updateCount = goodsDao.reduceNumber(goodsId, nowTime);
+                if (updateCount <= 0) {
+                    throw new seckillCloseException("seckill is close");
                 } else {
                     seckilled seckilled = seckilledDao.queryByGoodsIdWithGoods(goodsId);
                     return new seckillExecution(goodsId, statEnums.SUCCESS, seckilled);
                 }
+            }
+        /*try {
+            seckilledDao.killByProcedure(map);
+            int result = MapUtils.getInteger(map,"result",-2);*/
+            //Throw exceptions in order
+        } catch (seckillCloseException e1) {
+            throw e1;
+        } catch (repeatkillException e2) {
+            throw e2;
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            throw new seckillBaseException("inner error:" + e.getMessage());
+        }
+    }
+
+    public seckillExecution executeSeckillProcedure(long goodsId, long userId)
+            throws seckillBaseException, repeatkillException, seckillCloseException {
+        Date nowTime = new Date();
+        Map<String,Object> map = new HashMap<String, Object>();
+        map.put("goodsId",goodsId);
+        map.put("userId",userId);
+        map.put("killTime",nowTime);
+        map.put("result",null);
+        try {
+            seckilledDao.killByProcedure(map);
+            int result = MapUtils.getInteger(map,"result",-2);
+            if (result==1){
+                seckilled seckilled=seckilledDao.queryByGoodsIdWithGoods(goodsId);
+                return new seckillExecution(goodsId, statEnums.SUCCESS, seckilled);
+            }else {
+                return null;
             }
             //Throw exceptions in order
         } catch (seckillCloseException e1) {
@@ -117,7 +156,6 @@ public class goodsServiceImpl implements goodsService {
             logger.error(e.getMessage(), e);
             throw new seckillBaseException("inner error:" + e.getMessage());
         }
-
     }
 
 }

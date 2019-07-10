@@ -42,4 +42,16 @@ public interface goodsService {
      */
     seckillExecution executeseckill(long goodsId, long userId)
             throws seckillBaseException, repeatkillException, seckillCloseException;
+
+    /**
+     * procedure of seckill
+     * @param goodsId
+     * @param userId
+     * @return
+     * @throws seckillBaseException
+     * @throws repeatkillException
+     * @throws seckillCloseException
+     */
+    seckillExecution executeSeckillProcedure(long goodsId, long userId)
+            throws seckillBaseException, repeatkillException, seckillCloseException;
 }

@@ -99,7 +99,12 @@ public class goodsController {
             return "forward:/user/login";
         }
         seckillExecution execution = goodsService.executeseckill(goodsId, userId);
-            return "forward:/user/"+userId+"/cart";
+/*        seckillExecution execution = goodsService.executeSeckillProcedure(goodsId,userId);*/
+        if (execution!=null) {
+            return "forward:/user/" + userId + "/cart";
+        }else {
+            return "forward:/goods/list";
+        }
 
     }
 

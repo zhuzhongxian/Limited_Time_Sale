@@ -18,4 +18,12 @@
         WHERE s.goods_id = #{goodsId}
     </select>
 
+    <select id="killByProcedure" statementType="CALLABLE">
+        call pro_seckill(
+        #{goodsId,jdbcType=BIGINT,mode=IN},
+        #{userId,jdbcType=BIGINT,mode=IN}，
+        #{killTime,jdbcType=TIMESTAMP,mode=IN},
+        #{result,jdbcType=INTEGER,mode=OUT}
+        )
+    </select>
 </mapper>

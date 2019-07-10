@@ -3,6 +3,8 @@ package org.mall.dao;
 import org.apache.ibatis.annotations.Param;
 import org.mall.bean.seckilled;
 
+import java.util.Map;
+
 public interface seckilledDao {
     /**
      * insert seckill details
@@ -20,6 +22,10 @@ public interface seckilledDao {
      */
     seckilled queryByGoodsIdWithGoods(long goodsId);
 
-
+    /**
+     * use procedure for seckill
+     * @param paramMap
+     */
+    void killByProcedure(Map<String,Object> paramMap);
 
 }
